@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+/media/
+.env
+/static/
+.idea/
+tools/ЕТАПИ.docx
+db.sqlite3
+django_key.pem
+*.env
