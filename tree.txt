@@ -1,0 +1,54 @@
+../
+├── .env
+├── .gitignore
+├── manage.py
+├── README.md
+├── src/
+│   ├── db.sqlite3
+│   ├── accounts/
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── views.py
+│   │   ├── __init__.py
+│   │   ├── migrations/
+│   │   │   ├── __init__.py
+│   ├── cities/
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── views.py
+│   │   ├── __init__.py
+│   │   ├── migrations/
+│   │   │   ├── __init__.py
+│   ├── config/
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   ├── __init__.py
+│   ├── notifications/
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── views.py
+│   │   ├── __init__.py
+│   │   ├── migrations/
+│   │   │   ├── __init__.py
+│   ├── subscriptions/
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── views.py
+│   │   ├── __init__.py
+│   │   ├── migrations/
+│   │   │   ├── __init__.py
+├── tools/
+│   ├── 111
+│   ├── project_tree.py
+│   ├── ~$ЕТАПИ.docx
+│   ├── ЕТАПИ.docx
