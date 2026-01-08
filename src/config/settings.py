@@ -40,8 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
 
+    'accounts',
+    'cities',
+    'subscriptions',
+    'notifications',
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +144,5 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+AUTH_USER_MODEL = 'accounts.User'
