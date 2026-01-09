@@ -1,23 +1,37 @@
 import requests
 from django.conf import settings
 
-OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+WEATHERBIT_URL = "https://api.weatherbit.io/v2.0/current"
 
 
 def get_current_weather(lat: float, lon: float) -> dict:
+    if not settings.WEATHER_API_KEY:
+        return {
+            "temperature": None,
+            "description": "weather api key missing",
+        }
+
     params = {
         "lat": lat,
         "lon": lon,
-        "appid": settings.WEATHER_API_KEY,
-        "units": "metric",
+        "key": settings.WEATHER_API_KEY,
+        "units": "M",
     }
 
-    response = requests.get(OPENWEATHER_URL, params=params, timeout=10)
-    response.raise_for_status()
+    try:
+        response = requests.get(WEATHERBIT_URL, params=params, timeout=10)
+        response.raise_for_status()
+        data = response.json()
 
-    data = response.json()
+        weather = data["data"][0]
 
-    return {
-        "temperature": data["main"]["temp"],
-        "description": data["weather"][0]["description"],
-    }
+        return {
+            "temperature": weather["temp"],
+            "description": weather["weather"]["description"],
+        }
+
+    except Exception:
+        return {
+            "temperature": None,
+            "description": "weather service temporarily unavailable",
+        }

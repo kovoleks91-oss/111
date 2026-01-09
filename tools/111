@@ -9,6 +9,13 @@ alex
 $TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3ODk0MDI1LCJpYXQiOjE3Njc4OTA0MjUsImp0aSI6IjhlYjA3YjcyM2FmODQwYmE5NGY4ODY5ZmFiN2Y4NGVkIiwidXNlcl9pZCI6IjEifQ.EdpdeAlFPssCTKJIlZgEhXb146YTiyT-tnPzineLszo"
 
 OpenWeather
-Key
-23331c836cfa1491c743b703ed7f277e
-23331c836cfa1491c743b703ed7f277e
+
+3e010aa1d5f07c7eda4fc642ca9402e0
+DjangoWeather
+
+https://api.openweathermap.org/data/2.5/weather?lat=49.4444&lon=32.0598&appid=3e010aa1d5f07c7eda4fc642ca9402e0&units=metric
+
+
+Weatherbit API
+Thank you for signing up for our API.
+Your API Key: 7cfb3958b72b454bb5df9f55ff8c5368
