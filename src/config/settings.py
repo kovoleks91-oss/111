@@ -83,9 +83,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django_weather",
+        "USER": "postgres",
+        "PASSWORD": "020891",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -148,3 +152,6 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = 'accounts.User'
 
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+
+
+print("WEATHER_API_KEY =", WEATHER_API_KEY)

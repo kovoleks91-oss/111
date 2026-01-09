@@ -2,11 +2,9 @@ SUPERUSER
 alex
 4aiHik020891
 
-"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2Nzk3NjgyNSwiaWF0IjoxNzY3ODkwNDI1LCJqdGkiOiIyOGZmOTU2ZGNjMjc0ODFlODViNWVmNmUzMjdjMGFjMyIsInVzZXJfaWQiOiIxIn0.xAT2FIKdo7P32L1uQhf13js0YZ6-t1SI2_5PEFzCEaw",
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3OTc3MTIxLCJpYXQiOjE3Njc5NzM1MjEsImp0aSI6IjQ1YjFlMDZkZjY0OTQ2M2Q5YTExYjNjY2ZjYjQ5OGI4IiwidXNlcl9pZCI6IjEifQ.84nRQp3EpBLTrd93b4p4PnH3jj5KqJe-RD0xseCedTE
 
-"access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3ODk0MDI1LCJpYXQiOjE3Njc4OTA0MjUsImp0aSI6IjhlYjA3YjcyM2FmODQwYmE5NGY4ODY5ZmFiN2Y4NGVkIiwidXNlcl9pZCI6IjEifQ.EdpdeAlFPssCTKJIlZgEhXb146YTiyT-tnPzineLszo"
-
-$TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3ODk0MDI1LCJpYXQiOjE3Njc4OTA0MjUsImp0aSI6IjhlYjA3YjcyM2FmODQwYmE5NGY4ODY5ZmFiN2Y4NGVkIiwidXNlcl9pZCI6IjEifQ.EdpdeAlFPssCTKJIlZgEhXb146YTiyT-tnPzineLszo"
+$TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3OTc3MTIxLCJpYXQiOjE3Njc5NzM1MjEsImp0aSI6IjQ1YjFlMDZkZjY0OTQ2M2Q5YTExYjNjY2ZjYjQ5OGI4IiwidXNlcl9pZCI6IjEifQ.84nRQp3EpBLTrd93b4p4PnH3jj5KqJe-RD0xseCedTE"
 
 OpenWeather
 
@@ -19,3 +17,23 @@ https://api.openweathermap.org/data/2.5/weather?lat=49.4444&lon=32.0598&appid=3e
 Weatherbit API
 Thank you for signing up for our API.
 Your API Key: 7cfb3958b72b454bb5df9f55ff8c5368
+
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8000/api/auth/token/ `
+  -Method POST `
+  -ContentType "application/json" `
+  -Body '{
+    "username": "alex",
+    "password": "4aiHik020891"
+  }'
+
+
+отримати токен
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8000/api/auth/token/ `
+  -Method POST `
+  -ContentType "application/json" `
+  -Body '{
+    "username": "alex",
+    "password": "4aiHik020891"
+  }'
