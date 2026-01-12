@@ -28,7 +28,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-fallback")
 DEBUG = os.getenv("DEBUG") == "1"
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "django-weather-reminder.ew.r.appspot.com",
+    "localhost",
+    "127.0.0.1",
+]
+
 
 
 # Application definition
@@ -84,14 +89,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_weather",
-        "USER": "postgres",
-        "PASSWORD": "020891",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
@@ -128,7 +130,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -154,4 +157,7 @@ AUTH_USER_MODEL = 'accounts.User'
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 
-print("WEATHER_API_KEY =", WEATHER_API_KEY)
+# print("WEATHER_API_KEY =", WEATHER_API_KEY)
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'

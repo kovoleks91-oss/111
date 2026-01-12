@@ -1,0 +1,7 @@
+runtime: python311
+
+entrypoint: gunicorn --chdir src -b :$PORT config.wsgi:application
+
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: "src.config.settings"

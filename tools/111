@@ -37,3 +37,6 @@ Invoke-RestMethod `
     "username": "alex",
     "password": "4aiHik020891"
   }'
+
+
+Deployed service [default] to [https://django-weather-reminder.ew.r.appspot.com]
