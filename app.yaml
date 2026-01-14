@@ -1,7 +1,10 @@
-runtime: python311
+runtime: python312
 
-entrypoint: gunicorn --chdir src -b :$PORT config.wsgi:application
+entrypoint: gunicorn --chdir src config.wsgi:application --bind :$PORT
 
+handlers:
+  - url: /static
+    static_dir: staticfiles
 
-env_variables:
-  DJANGO_SETTINGS_MODULE: "src.config.settings"
+  - url: /.*
+    script: auto
