@@ -40,3 +40,5 @@ Invoke-RestMethod `
 
 
 Deployed service [default] to [https://django-weather-reminder.ew.r.appspot.com]
+
+.\.venv\Scripts\Activate.ps1
