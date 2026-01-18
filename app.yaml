@@ -8,3 +8,8 @@ handlers:
 
   - url: /.*
     script: auto
+
+
+env_variables:
+  DB_PASSWORD: "django-weather-reminder:europe-west1:weather-db"
+  INSTANCE_CONNECTION_NAME: "django-weather-reminder:europe-west1:weather-db"

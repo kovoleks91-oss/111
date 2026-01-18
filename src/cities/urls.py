@@ -1,9 +1,7 @@
 from django.urls import path
-from django.http import JsonResponse
-
-def cities_stub(request):
-    return JsonResponse([], safe=False)
+from .views import CityListView, CityWeatherView
 
 urlpatterns = [
-    path("", cities_stub),
+    path("", CityListView.as_view()),
+    path("<int:city_id>/weather/", CityWeatherView.as_view()),
 ]

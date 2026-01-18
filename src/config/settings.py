@@ -3,9 +3,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-dev-key")
-
 DEBUG = os.environ.get("DEBUG") == "1"
 
 ALLOWED_HOSTS = [
@@ -23,12 +21,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
+
     "cities",
     "subscriptions",
     "notifications",
 ]
-
-
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -60,16 +57,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "src.config.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# ===== DATABASES =====
 
-# GAE writeable FS
 if os.environ.get("GAE_ENV", "").startswith("standard"):
-    DATABASES["default"]["NAME"] = "/tmp/db.sqlite3"
+    # Google App Engine Standard
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "/tmp/db.sqlite3",
+        }
+    }
+else:
+    # Local PostgreSQL
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "django_weather",
+            "USER": "weather_user",
+            "PASSWORD": "123",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"

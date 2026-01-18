@@ -2,6 +2,8 @@ SUPERUSER
 alex
 4aiHik020891
 
+Alex325$$36151
+
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3OTc3MTIxLCJpYXQiOjE3Njc5NzM1MjEsImp0aSI6IjQ1YjFlMDZkZjY0OTQ2M2Q5YTExYjNjY2ZjYjQ5OGI4IiwidXNlcl9pZCI6IjEifQ.84nRQp3EpBLTrd93b4p4PnH3jj5KqJe-RD0xseCedTE
 
 $TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3OTc3MTIxLCJpYXQiOjE3Njc5NzM1MjEsImp0aSI6IjQ1YjFlMDZkZjY0OTQ2M2Q5YTExYjNjY2ZjYjQ5OGI4IiwidXNlcl9pZCI6IjEifQ.84nRQp3EpBLTrd93b4p4PnH3jj5KqJe-RD0xseCedTE"
@@ -42,3 +44,4 @@ Invoke-RestMethod `
 Deployed service [default] to [https://django-weather-reminder.ew.r.appspot.com]
 
 .\.venv\Scripts\Activate.ps1
+
