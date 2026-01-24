@@ -12,12 +12,14 @@ print("ENV FILE LOADED:", ENV_PATH)
 WEATHERBIT_API_KEY = os.getenv("WEATHERBIT_API_KEY")
 
 SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
-DEBUG = os.getenv("DEBUG") == "False"
+DEBUG = os.getenv("DEBUG", "0").lower() in ("1", "true", "yes")
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-]
+
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1 localhost"
+).split()
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -62,19 +64,24 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "weather",
-        "USER": "weather",
-        "PASSWORD": "weather",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.getenv("DBNAME"),
+        "USER": os.getenv("DBUSER"),
+        "PASSWORD": os.getenv("DBPASS"),
+        "HOST": os.getenv("DBHOST"),
+        "PORT": os.getenv("DBPORT", "5432"),
+        "OPTIONS": {"sslmode": "require"},
     }
 }
+
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
