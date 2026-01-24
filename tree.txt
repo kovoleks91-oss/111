@@ -1,8 +1,8 @@
 ../
-├── .env
 ├── .gcloudignore
 ├── .gitignore
 ├── app.yaml
+├── db.sqlite3
 ├── manage.py
 ├── README.md
 ├── requirements.txt
@@ -12,13 +12,9 @@
 │   ├── accounts/
 │   │   ├── admin.py
 │   │   ├── apps.py
-│   │   ├── models.py
 │   │   ├── tests.py
 │   │   ├── views.py
 │   │   ├── __init__.py
-│   │   ├── migrations/
-│   │   │   ├── 0001_initial.py
-│   │   │   ├── __init__.py
 │   ├── cities/
 │   │   ├── admin.py
 │   │   ├── apps.py
@@ -32,6 +28,7 @@
 │   │   │   ├── 0001_initial.py
 │   │   │   ├── __init__.py
 │   ├── config/
+│   │   ├── .env
 │   │   ├── asgi.py
 │   │   ├── settings.py
 │   │   ├── urls.py
@@ -44,12 +41,10 @@
 │   │   ├── tests.py
 │   │   ├── views.py
 │   │   ├── __init__.py
-│   │   ├── migrations/
-│   │   │   ├── 0001_initial.py
-│   │   │   ├── __init__.py
 │   ├── services/
 │   │   ├── weather.py
 │   │   ├── __init__.py
+│   ├── static/
 │   ├── staticfiles/
 │   │   ├── admin/
 │   │   │   ├── css/
@@ -93,18 +88,24 @@
 │   │   │   │   ├── icon-yes-dark.svg
 │   │   │   │   ├── icon-yes.svg
 │   │   │   │   ├── inline-delete.svg
+│   │   │   │   ├── LICENSE
 │   │   │   │   ├── README.md
+│   │   │   │   ├── README.txt
 │   │   │   │   ├── search.svg
 │   │   │   │   ├── selector-icons.svg
 │   │   │   │   ├── sorting-icons.svg
 │   │   │   │   ├── tooltag-add.svg
 │   │   │   │   ├── tooltag-arrowright.svg
+│   │   │   │   ├── gis/
+│   │   │   │   │   ├── move_vertex_off.svg
+│   │   │   │   │   ├── move_vertex_on.svg
 │   │   │   ├── js/
 │   │   │   │   ├── actions.js
 │   │   │   │   ├── autocomplete.js
 │   │   │   │   ├── calendar.js
 │   │   │   │   ├── cancel.js
 │   │   │   │   ├── change_form.js
+│   │   │   │   ├── collapse.js
 │   │   │   │   ├── core.js
 │   │   │   │   ├── filters.js
 │   │   │   │   ├── inlines.js
@@ -116,6 +117,7 @@
 │   │   │   │   ├── SelectBox.js
 │   │   │   │   ├── SelectFilter2.js
 │   │   │   │   ├── theme.js
+│   │   │   │   ├── unusable_password_field.js
 │   │   │   │   ├── urlify.js
 │   │   │   │   ├── admin/
 │   │   │   │   │   ├── DateTimeShortcuts.js
@@ -193,6 +195,95 @@
 │   │   │   │   │   │   ├── LICENSE.txt
 │   │   │   │   │   │   ├── xregexp.js
 │   │   │   │   │   │   ├── xregexp.min.js
+│   │   ├── admin_interface/
+│   │   │   ├── collapsible-inlines/
+│   │   │   │   ├── collapsible-inlines.js
+│   │   │   ├── css/
+│   │   │   │   ├── admin-interface.css
+│   │   │   │   ├── change-form.css
+│   │   │   │   ├── changelist.css
+│   │   │   │   ├── fieldsets.css
+│   │   │   │   ├── file-upload.css
+│   │   │   │   ├── header.css
+│   │   │   │   ├── inlines.css
+│   │   │   │   ├── jquery.ui.tabs.css
+│   │   │   │   ├── language-chooser.css
+│   │   │   │   ├── list-filter-dropdown.css
+│   │   │   │   ├── list-filter.css
+│   │   │   │   ├── login.css
+│   │   │   │   ├── modules.css
+│   │   │   │   ├── nav-sidebar.css
+│   │   │   │   ├── object-tools.css
+│   │   │   │   ├── paginator.css
+│   │   │   │   ├── recent-actions.css
+│   │   │   │   ├── rtl.css
+│   │   │   │   ├── sticky-form-controls.css
+│   │   │   │   ├── tabbed-changeform.css
+│   │   │   │   ├── widgets.css
+│   │   │   │   ├── third-party/
+│   │   │   │   │   ├── ckeditor.css
+│   │   │   │   │   ├── import-export.css
+│   │   │   │   │   ├── json-widget.css
+│   │   │   │   │   ├── modeltranslation.css
+│   │   │   │   │   ├── rangefilter.css
+│   │   │   │   │   ├── sorl-thumbnail.css
+│   │   │   │   │   ├── streamfield.css
+│   │   │   │   │   ├── tabbed-admin.css
+│   │   │   │   │   ├── tinymce.css
+│   │   │   ├── dropdown-filter/
+│   │   │   │   ├── dropdown-filter.js
+│   │   │   ├── favico/
+│   │   │   │   ├── favico-0.3.10-patched.js
+│   │   │   │   ├── favico-0.3.10-patched.min.js
+│   │   │   │   ├── favico-env.js
+│   │   │   ├── foldable-apps/
+│   │   │   │   ├── foldable-apps.css
+│   │   │   │   ├── foldable-apps.js
+│   │   │   ├── language-chooser/
+│   │   │   │   ├── language-chooser.js
+│   │   │   ├── magnific-popup/
+│   │   │   │   ├── jquery.magnific-popup.js
+│   │   │   │   ├── magnific-popup.css
+│   │   │   ├── related-modal/
+│   │   │   │   ├── related-modal.css
+│   │   │   │   ├── related-modal.js
+│   │   │   ├── tabbed-changeform/
+│   │   │   │   ├── tabbed-changeform.js
+│   │   ├── ckeditor/
+│   │   │   ├── ckeditor/
+│   │   │   │   ├── skins/
+│   │   │   │   │   ├── light/
+│   │   │   │   │   │   ├── bower.json
+│   │   │   │   │   │   ├── dialog.css
+│   │   │   │   │   │   ├── editor.css
+│   │   │   │   │   │   ├── editor_gecko.css
+│   │   │   │   │   │   ├── editor_ie.css
+│   │   │   │   │   │   ├── editor_ie7.css
+│   │   │   │   │   │   ├── editor_ie8.css
+│   │   │   │   │   │   ├── icons.png
+│   │   │   │   │   │   ├── icons_hidpi.png
+│   │   │   │   │   │   ├── LICENSE
+│   │   │   │   │   │   ├── README.md
+│   │   │   │   │   │   ├── skin.js
+│   │   │   │   │   │   ├── images/
+│   │   │   │   │   │   │   ├── arrow.png
+│   │   │   │   │   │   │   ├── close.png
+│   │   │   │   │   │   │   ├── lock-open.png
+│   │   │   │   │   │   │   ├── lock.png
+│   │   │   │   │   │   │   ├── refresh.png
+│   │   │   │   │   │   │   ├── hidpi/
+│   │   │   │   │   │   │   │   ├── close.png
+│   │   │   │   │   │   │   │   ├── lock-open.png
+│   │   │   │   │   │   │   │   ├── lock.png
+│   │   │   │   │   │   │   │   ├── refresh.png
+│   │   ├── colorfield/
+│   │   │   ├── colorfield.js
+│   │   │   ├── coloris/
+│   │   │   │   ├── coloris.css
+│   │   │   │   ├── coloris.js
+│   │   │   │   ├── coloris.min.css
+│   │   │   │   ├── coloris.min.js
+│   │   │   │   ├── README.txt
 │   │   ├── rest_framework/
 │   │   │   ├── css/
 │   │   │   │   ├── bootstrap-theme.min.css
@@ -238,6 +329,10 @@
 │   │   │   │   ├── jquery-3.7.1.min.js
 │   │   │   │   ├── load-ajax-form.js
 │   │   │   │   ├── prettify-min.js
+│   │   ├── streamfield/
+│   │   │   ├── admin_popup_response.js
+│   │   │   ├── js/
+│   │   │   │   ├── admin_popup_response.js
 │   ├── subscriptions/
 │   │   ├── admin.py
 │   │   ├── apps.py
@@ -247,9 +342,192 @@
 │   │   ├── urls.py
 │   │   ├── views.py
 │   │   ├── __init__.py
-│   │   ├── migrations/
-│   │   │   ├── 0001_initial.py
-│   │   │   ├── __init__.py
+├── staticfiles/
+│   ├── admin/
+│   │   ├── css/
+│   │   │   ├── autocomplete.css
+│   │   │   ├── base.css
+│   │   │   ├── changelists.css
+│   │   │   ├── dark_mode.css
+│   │   │   ├── dashboard.css
+│   │   │   ├── forms.css
+│   │   │   ├── login.css
+│   │   │   ├── nav_sidebar.css
+│   │   │   ├── responsive.css
+│   │   │   ├── responsive_rtl.css
+│   │   │   ├── rtl.css
+│   │   │   ├── unusable_password_field.css
+│   │   │   ├── widgets.css
+│   │   │   ├── vendor/
+│   │   │   │   ├── select2/
+│   │   │   │   │   ├── LICENSE-SELECT2.md
+│   │   │   │   │   ├── select2.css
+│   │   │   │   │   ├── select2.min.css
+│   │   ├── img/
+│   │   │   ├── calendar-icons.svg
+│   │   │   ├── icon-addlink.svg
+│   │   │   ├── icon-alert.svg
+│   │   │   ├── icon-calendar.svg
+│   │   │   ├── icon-changelink.svg
+│   │   │   ├── icon-clock.svg
+│   │   │   ├── icon-deletelink.svg
+│   │   │   ├── icon-hidelink.svg
+│   │   │   ├── icon-no.svg
+│   │   │   ├── icon-unknown-alt.svg
+│   │   │   ├── icon-unknown.svg
+│   │   │   ├── icon-viewlink.svg
+│   │   │   ├── icon-yes.svg
+│   │   │   ├── inline-delete.svg
+│   │   │   ├── LICENSE
+│   │   │   ├── README.txt
+│   │   │   ├── search.svg
+│   │   │   ├── selector-icons.svg
+│   │   │   ├── sorting-icons.svg
+│   │   │   ├── tooltag-add.svg
+│   │   │   ├── tooltag-arrowright.svg
+│   │   │   ├── gis/
+│   │   │   │   ├── move_vertex_off.svg
+│   │   │   │   ├── move_vertex_on.svg
+│   │   ├── js/
+│   │   │   ├── actions.js
+│   │   │   ├── autocomplete.js
+│   │   │   ├── calendar.js
+│   │   │   ├── cancel.js
+│   │   │   ├── change_form.js
+│   │   │   ├── core.js
+│   │   │   ├── filters.js
+│   │   │   ├── inlines.js
+│   │   │   ├── jquery.init.js
+│   │   │   ├── nav_sidebar.js
+│   │   │   ├── popup_response.js
+│   │   │   ├── prepopulate.js
+│   │   │   ├── prepopulate_init.js
+│   │   │   ├── SelectBox.js
+│   │   │   ├── SelectFilter2.js
+│   │   │   ├── theme.js
+│   │   │   ├── unusable_password_field.js
+│   │   │   ├── urlify.js
+│   │   │   ├── admin/
+│   │   │   │   ├── DateTimeShortcuts.js
+│   │   │   │   ├── RelatedObjectLookups.js
+│   │   │   ├── vendor/
+│   │   │   │   ├── jquery/
+│   │   │   │   │   ├── jquery.js
+│   │   │   │   │   ├── jquery.min.js
+│   │   │   │   │   ├── LICENSE.txt
+│   │   │   │   ├── select2/
+│   │   │   │   │   ├── LICENSE.md
+│   │   │   │   │   ├── select2.full.js
+│   │   │   │   │   ├── select2.full.min.js
+│   │   │   │   │   ├── i18n/
+│   │   │   │   │   │   ├── af.js
+│   │   │   │   │   │   ├── ar.js
+│   │   │   │   │   │   ├── az.js
+│   │   │   │   │   │   ├── bg.js
+│   │   │   │   │   │   ├── bn.js
+│   │   │   │   │   │   ├── bs.js
+│   │   │   │   │   │   ├── ca.js
+│   │   │   │   │   │   ├── cs.js
+│   │   │   │   │   │   ├── da.js
+│   │   │   │   │   │   ├── de.js
+│   │   │   │   │   │   ├── dsb.js
+│   │   │   │   │   │   ├── el.js
+│   │   │   │   │   │   ├── en.js
+│   │   │   │   │   │   ├── es.js
+│   │   │   │   │   │   ├── et.js
+│   │   │   │   │   │   ├── eu.js
+│   │   │   │   │   │   ├── fa.js
+│   │   │   │   │   │   ├── fi.js
+│   │   │   │   │   │   ├── fr.js
+│   │   │   │   │   │   ├── gl.js
+│   │   │   │   │   │   ├── he.js
+│   │   │   │   │   │   ├── hi.js
+│   │   │   │   │   │   ├── hr.js
+│   │   │   │   │   │   ├── hsb.js
+│   │   │   │   │   │   ├── hu.js
+│   │   │   │   │   │   ├── hy.js
+│   │   │   │   │   │   ├── id.js
+│   │   │   │   │   │   ├── is.js
+│   │   │   │   │   │   ├── it.js
+│   │   │   │   │   │   ├── ja.js
+│   │   │   │   │   │   ├── ka.js
+│   │   │   │   │   │   ├── km.js
+│   │   │   │   │   │   ├── ko.js
+│   │   │   │   │   │   ├── lt.js
+│   │   │   │   │   │   ├── lv.js
+│   │   │   │   │   │   ├── mk.js
+│   │   │   │   │   │   ├── ms.js
+│   │   │   │   │   │   ├── nb.js
+│   │   │   │   │   │   ├── ne.js
+│   │   │   │   │   │   ├── nl.js
+│   │   │   │   │   │   ├── pl.js
+│   │   │   │   │   │   ├── ps.js
+│   │   │   │   │   │   ├── pt-BR.js
+│   │   │   │   │   │   ├── pt.js
+│   │   │   │   │   │   ├── ro.js
+│   │   │   │   │   │   ├── ru.js
+│   │   │   │   │   │   ├── sk.js
+│   │   │   │   │   │   ├── sl.js
+│   │   │   │   │   │   ├── sq.js
+│   │   │   │   │   │   ├── sr-Cyrl.js
+│   │   │   │   │   │   ├── sr.js
+│   │   │   │   │   │   ├── sv.js
+│   │   │   │   │   │   ├── th.js
+│   │   │   │   │   │   ├── tk.js
+│   │   │   │   │   │   ├── tr.js
+│   │   │   │   │   │   ├── uk.js
+│   │   │   │   │   │   ├── vi.js
+│   │   │   │   │   │   ├── zh-CN.js
+│   │   │   │   │   │   ├── zh-TW.js
+│   │   │   │   ├── xregexp/
+│   │   │   │   │   ├── LICENSE.txt
+│   │   │   │   │   ├── xregexp.js
+│   │   │   │   │   ├── xregexp.min.js
+│   ├── rest_framework/
+│   │   ├── css/
+│   │   │   ├── bootstrap-theme.min.css
+│   │   │   ├── bootstrap-theme.min.css.map
+│   │   │   ├── bootstrap-tweaks.css
+│   │   │   ├── bootstrap.min.css
+│   │   │   ├── bootstrap.min.css.map
+│   │   │   ├── default.css
+│   │   │   ├── font-awesome-4.0.3.css
+│   │   │   ├── prettify.css
+│   │   ├── docs/
+│   │   │   ├── css/
+│   │   │   │   ├── base.css
+│   │   │   │   ├── highlight.css
+│   │   │   │   ├── jquery.json-view.min.css
+│   │   │   ├── img/
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── grid.png
+│   │   │   ├── js/
+│   │   │   │   ├── api.js
+│   │   │   │   ├── highlight.pack.js
+│   │   │   │   ├── jquery.json-view.min.js
+│   │   ├── fonts/
+│   │   │   ├── fontawesome-webfont.eot
+│   │   │   ├── fontawesome-webfont.svg
+│   │   │   ├── fontawesome-webfont.ttf
+│   │   │   ├── fontawesome-webfont.woff
+│   │   │   ├── glyphicons-halflings-regular.eot
+│   │   │   ├── glyphicons-halflings-regular.svg
+│   │   │   ├── glyphicons-halflings-regular.ttf
+│   │   │   ├── glyphicons-halflings-regular.woff
+│   │   │   ├── glyphicons-halflings-regular.woff2
+│   │   ├── img/
+│   │   │   ├── glyphicons-halflings-white.png
+│   │   │   ├── glyphicons-halflings.png
+│   │   │   ├── grid.png
+│   │   ├── js/
+│   │   │   ├── ajax-form.js
+│   │   │   ├── bootstrap.min.js
+│   │   │   ├── coreapi-0.1.1.js
+│   │   │   ├── csrf.js
+│   │   │   ├── default.js
+│   │   │   ├── jquery-3.7.1.min.js
+│   │   │   ├── load-ajax-form.js
+│   │   │   ├── prettify-min.js
 ├── tools/
 │   ├── 111
 │   ├── project_tree.py

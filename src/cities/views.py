@@ -1,31 +1,49 @@
-from rest_framework.generics import ListAPIView
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
-
-from .models import City
-from .serializers import CitySerializer
-from services.weather import get_current_weather
+import requests
+from django.http import JsonResponse
+from django.conf import settings
+from cities.models import City
 
 
-class CityListView(ListAPIView):
-    queryset = City.objects.all()
-    serializer_class = CitySerializer
+def city_weather(request, city_id):
+    try:
+        city = City.objects.get(id=city_id)
+    except City.DoesNotExist:
+        return JsonResponse({"error": "City not found"}, status=404)
 
+    if not settings.WEATHERBIT_API_KEY:
+        return JsonResponse({"error": "WEATHERBIT_API_KEY not set"}, status=500)
 
-class CityWeatherView(APIView):
-    permission_classes = []
+    url = "https://api.weatherbit.io/v2.0/current"
+    params = {
+        "city": city.name,
+        "country": city.country,
+        "key": settings.WEATHERBIT_API_KEY,
+        "units": "M",
+    }
 
-    def get(self, request, city_id):
-        city = get_object_or_404(City, id=city_id)
+    response = requests.get(url, params=params, timeout=10)
 
-        weather = get_current_weather(
-            lat=city.latitude,
-            lon=city.longitude,
+    if response.status_code != 200:
+        return JsonResponse(
+            {
+                "error": "Weatherbit API error",
+                "status_code": response.status_code,
+                "response": response.text,
+            },
+            status=502,
         )
 
-        return Response({
+    payload = response.json()
+    data = payload["data"][0]
+
+    return JsonResponse(
+        {
             "city": city.name,
-            "temperature": weather["temperature"],
-            "description": weather["description"],
-        })
+            "country": city.country,
+            "temperature": data["temp"],
+            "feels_like": data["app_temp"],
+            "description": data["weather"]["description"],
+            "wind_speed": data["wind_spd"],
+            "clouds": data["clouds"],
+        }
+    )

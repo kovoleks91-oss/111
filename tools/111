@@ -45,3 +45,13 @@ Deployed service [default] to [https://django-weather-reminder.ew.r.appspot.com]
 
 .\.venv\Scripts\Activate.ps1
 
+34.22.176.129
+
+name: Cherkasy
+country: UA
+latitude: 49.4444
+longitude: 32.0598
+
+http://127.0.0.1:8000/api/cities/weather/1/
+
+https://api.weatherbit.io/v2.0/current?city=Cherkasy&country=UA&key=7cfb3958b72b454bb5df9f55ff8c5368

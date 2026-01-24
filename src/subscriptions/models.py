@@ -1,10 +1,10 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
 from cities.models import City
 
-User = settings.AUTH_USER_MODEL
+User = get_user_model()
 
 class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subscriptions')

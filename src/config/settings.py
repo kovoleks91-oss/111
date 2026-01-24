@@ -1,15 +1,22 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-dev-key")
-DEBUG = os.environ.get("DEBUG") == "1"
+ENV_PATH = BASE_DIR / "config" / ".env"
+load_dotenv(ENV_PATH)
+
+print("ENV FILE LOADED:", ENV_PATH)
+
+WEATHERBIT_API_KEY = os.getenv("WEATHERBIT_API_KEY")
+
+SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
+DEBUG = os.getenv("DEBUG") == "False"
 
 ALLOWED_HOSTS = [
-    "django-weather-reminder.ew.r.appspot.com",
-    "localhost",
     "127.0.0.1",
+    "localhost",
 ]
 
 INSTALLED_APPS = [
@@ -19,12 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    "rest_framework",
-
     "cities",
-    "subscriptions",
-    "notifications",
 ]
 
 MIDDLEWARE = [
@@ -37,12 +39,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "src.config.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -55,32 +57,24 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.config.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
-# ===== DATABASES =====
-
-if os.environ.get("GAE_ENV", "").startswith("standard"):
-    # Google App Engine Standard
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "/tmp/db.sqlite3",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "weather",
+        "USER": "weather",
+        "PASSWORD": "weather",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
-else:
-    # Local PostgreSQL
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "django_weather",
-            "USER": "weather_user",
-            "PASSWORD": "123",
-            "HOST": "localhost",
-            "PORT": "5432",
-        }
-    }
+}
 
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
 
+STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
