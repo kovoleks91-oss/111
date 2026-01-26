@@ -4,22 +4,27 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Локально можна мати .env, на Azure він не використовується
 ENV_PATH = BASE_DIR / "config" / ".env"
-load_dotenv(ENV_PATH)
-
-print("ENV FILE LOADED:", ENV_PATH)
+if ENV_PATH.exists():
+    load_dotenv(ENV_PATH)
 
 WEATHERBIT_API_KEY = os.getenv("WEATHERBIT_API_KEY")
 
-SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
-DEBUG = os.getenv("DEBUG", "0").lower() in ("1", "true", "yes")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY is not set")
+
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+
 
 
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
-    "127.0.0.1 localhost"
+    "127.0.0.1 localhost .azurewebsites.net"
 ).split()
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -69,9 +74,12 @@ DATABASES = {
         "PASSWORD": os.getenv("DBPASS"),
         "HOST": os.getenv("DBHOST"),
         "PORT": os.getenv("DBPORT", "5432"),
-        "OPTIONS": {"sslmode": "require"},
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
+
 
 
 LANGUAGE_CODE = "en-us"
@@ -85,3 +93,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

@@ -2,8 +2,10 @@
 ├── .gcloudignore
 ├── .gitignore
 ├── app.yaml
+├── app.zip
 ├── db.sqlite3
 ├── manage.py
+├── Procfile
 ├── README.md
 ├── requirements.txt
 ├── src/
