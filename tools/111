@@ -56,7 +56,5 @@ longitude: 32.0598
 
 http://127.0.0.1:8000/api/cities/weather/1/
 
-https://api.weatherbit.io/v2.0/current?city=Cherkasy&country=UA&key=7cfb3958b72b454bb5df9f55ff8c5368
 
-
-[Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("ТВІЙ_FTPS_USERNAME:ТВІЙ_FTPS_PASSWORD"))
+https://django-weather-reminder.azurewebsites.net/
