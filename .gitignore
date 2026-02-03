@@ -9,3 +9,4 @@ tools/ЕТАПИ.docx
 db.sqlite3
 django_key.pem
 *.env
+django-weather-app.PublishSettings
