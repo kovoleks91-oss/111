@@ -4,10 +4,15 @@
 ├── app.yaml
 ├── app.zip
 ├── db.sqlite3
+├── django-weather-app.PublishSettings
 ├── manage.py
 ├── Procfile
 ├── README.md
 ├── requirements.txt
+├── .github/
+│   ├── workflows/
+│   │   ├── azure.yml
+│   │   ├── dev_django-weather-app.yml
 ├── src/
 │   ├── db.sqlite3
 │   ├── __init__.py
@@ -34,6 +39,7 @@
 │   │   ├── asgi.py
 │   │   ├── settings.py
 │   │   ├── urls.py
+│   │   ├── views.py
 │   │   ├── wsgi.py
 │   │   ├── __init__.py
 │   ├── notifications/
