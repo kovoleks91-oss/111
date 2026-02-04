@@ -2,14 +2,11 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Локально можна мати .env, на Azure він не використовується
 ENV_PATH = BASE_DIR / "config" / ".env"
 if ENV_PATH.exists():
     load_dotenv(ENV_PATH)
-
-WEATHERBIT_API_KEY = os.getenv("WEATHERBIT_API_KEY")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
@@ -17,12 +14,7 @@ if not SECRET_KEY:
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-
-
 ALLOWED_HOSTS = ["*"]
-
-
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -34,7 +26,6 @@ INSTALLED_APPS = [
     "src.cities",
 ]
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -45,7 +36,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "src.config.urls"
 
 TEMPLATES = [
     {
@@ -63,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "src.config.wsgi.application"
 
 DATABASES = {
     "default": {
@@ -79,24 +70,12 @@ DATABASES = {
     }
 }
 
-
-
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
-USE_I18N = True
-USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

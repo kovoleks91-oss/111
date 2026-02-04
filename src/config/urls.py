@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import health_json
+from src.cities.views import health_json
 
 urlpatterns = [
     path("", health_json),
